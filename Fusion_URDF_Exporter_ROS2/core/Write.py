@@ -125,7 +125,7 @@ def write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_n
     file_name = save_dir + '/urdf/' + robot_name + '.xacro'  # the name of urdf file
     repo = package_name + '/meshes/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro">\n'.format(robot_name))
         f.write('\n')
         f.write('<xacro:include filename="$(find {})/urdf/materials.xacro" />'.format(package_name))
@@ -146,7 +146,7 @@ def write_urdf_sim(joints_dict, links_xyz_dict, inertial_dict, package_name, rob
     file_name = save_dir + '/urdf/' + robot_name + '.xacro'  # the name of urdf file
     repo = package_name + '/meshes/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro">\n'.format(robot_name))
         f.write('\n')
         f.write('<xacro:include filename="$(find {})/urdf/materials.xacro" />'.format(package_name))
@@ -167,7 +167,7 @@ def write_materials_xacro(joints_dict, links_xyz_dict, inertial_dict, package_na
 
     file_name = save_dir + '/urdf/materials.xacro'  # the name of urdf file
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro" >\n'.format(robot_name))
         f.write('\n')
         f.write('<material name="silver">\n')
@@ -195,7 +195,7 @@ def write_transmissions_xacro(joints_dict, links_xyz_dict, inertial_dict, packag
 
     file_name = save_dir + '/urdf/{}.trans'.format(robot_name)  # the name of urdf file
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro" >\n'.format(robot_name))
         f.write('\n')
 
@@ -247,7 +247,7 @@ def write_ros2control_xacro(joints_dict, links_xyz_dict, inertial_dict, package_
 
     file_name = save_dir + '/urdf/{}.ros2control'.format(robot_name)  # the name of urdf file
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro" >\n'.format(robot_name))
         f.write('\n')
 
@@ -290,7 +290,7 @@ def write_gazebo_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name,
     repo = robot_name + '/meshes/'  # the repository of binary stl files
     #repo = package_name + '/' + robot_name + '/bin_stl/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro" >\n'.format(robot_name))
         f.write('\n')
         f.write('<xacro:property name="body_color" value="Gazebo/Silver" />\n')
@@ -333,7 +333,7 @@ def write_gazebo_sim_xacro(joints_dict, links_xyz_dict, inertial_dict, package_n
     repo = robot_name + '/meshes/'  # the repository of binary stl files
     #repo = package_name + '/' + robot_name + '/bin_stl/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro" >\n'.format(robot_name))
         f.write('\n')
         f.write('<xacro:property name="body_color" value="Gazebo/Silver" />\n')
