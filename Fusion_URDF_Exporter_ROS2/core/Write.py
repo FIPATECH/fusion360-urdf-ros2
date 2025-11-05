@@ -125,7 +125,7 @@ def write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_n
     file_name = save_dir + '/urdf/' + robot_name + '.xacro'  # the name of urdf file
     repo = package_name + '/meshes/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
-        f.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+        f.write('<?xml version="1.0" encoding="utf-8"?>\n')
         f.write('<robot name="{}" xmlns:xacro="http://www.ros.org/wiki/xacro">\n'.format(robot_name))
         f.write('\n')
         f.write('<xacro:include filename="$(find {})/urdf/materials.xacro" />'.format(package_name))

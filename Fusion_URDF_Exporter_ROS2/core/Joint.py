@@ -31,7 +31,7 @@ class Joint:
         tran_xml: str
             generated xml describing about the transmission
         """
-        self.name = name
+        self.name = name.replace(" ", "_")
         self.type = joint_type
         self.xyz = xyz
         self.parent = parent
