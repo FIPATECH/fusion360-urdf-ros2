@@ -113,7 +113,7 @@ def make_inertial_dict(root, msg):
         # Skip the root component.
         occs_dict = {}
         prop = occs.getPhysicalProperties(adsk.fusion.CalculationAccuracy.VeryHighCalculationAccuracy)
-        occs_name = re.sub('[()]', '', occs.name.split(":")[0]).replace(" ", "_")
+        occs_name = re.sub(' ','_',re.sub('[():]', '', occs.name.split(":")[0]))
         occs_dict['name'] = occs_name
 
         mass = prop.mass  # kg

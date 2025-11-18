@@ -48,8 +48,12 @@ def write_link_urdf(joints_dict, repo, links_xyz_dict, file_name, inertial_dict)
         # others
         for joint in joints_dict:
             name = joints_dict[joint]['child']
+            with open('C:/Users/enezl/Desktop/test.txt', 'a') as d:
+                d.write(f"start processing {name}\n")
             center_of_mass = \
                 [ i-j for i, j in zip(inertial_dict[name]['center_of_mass'], joints_dict[joint]['xyz'])]
+            with open('C:/Users/enezl/Desktop/test.txt', 'a') as d:
+                d.write(f"passed step1\n")
             link = Link.Link(name=name, xyz=joints_dict[joint]['xyz'],\
                 center_of_mass=center_of_mass,\
                 repo=repo, mass=inertial_dict[name]['mass'],\
@@ -134,9 +138,14 @@ def write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_n
         f.write('\n')
         f.write('<xacro:include filename="$(find {})/urdf/{}.gazebo" />'.format(package_name, robot_name))
         f.write('\n')
-
+    with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+        f.write("Successfully wrote urdf start\n")
     write_link_urdf(joints_dict, repo, links_xyz_dict, file_name, inertial_dict)
+    with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+        f.write("Successfully wrote urdf link\n")
     write_joint_urdf(joints_dict, repo, links_xyz_dict, file_name)
+    with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+        f.write("Successfully wrote urdf joint\n")
     write_gazebo_endtag(file_name)
 
 def write_urdf_sim(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir):

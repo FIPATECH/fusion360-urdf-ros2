@@ -1,4 +1,4 @@
-#Author-syuntoku14, Dheena2k2, Lentin Joseph,
+#Author-syuntoku14, Dheena2k2, Lentin Joseph, enezl
 #Description-Generate URDF file from Fusion 360
 
 import adsk, adsk.core, adsk.fusion, traceback
@@ -29,6 +29,9 @@ def run(context):
         app = adsk.core.Application.get()
         ui = app.userInterface
 
+        with open('C:/Users/enezl/Desktop/test.txt', 'w') as f :
+            f.write("start"+"\n")
+
         product = app.activeProduct
         design = adsk.fusion.Design.cast(product)
         title = 'Fusion 360 -> ROS 2 URDF'
@@ -56,10 +59,10 @@ def run(context):
         if ui.messageBox(welcome_msg, title, adsk.core.MessageBoxButtonTypes.OKCancelButtonType) != adsk.core.DialogResults.DialogOK:
             return
 
-        # Show folder browse message
-        browse_msg = "Press Ok to browse the folder for saving the ROS package, cancel to quit."
-        if ui.messageBox(browse_msg, title, adsk.core.MessageBoxButtonTypes.OKCancelButtonType) != adsk.core.DialogResults.DialogOK:
-            return
+        # # Show folder browse message
+        # browse_msg = "Press Ok to browse the folder for saving the ROS package, cancel to quit."
+        # if ui.messageBox(browse_msg, title, adsk.core.MessageBoxButtonTypes.OKCancelButtonType) != adsk.core.DialogResults.DialogOK:
+        #     return
 
         # Browse folder
         save_dir = utils.file_dialog(ui)
@@ -132,12 +135,20 @@ def run(context):
 
             # Generate joints_dict. All joints are related to root.
             joints_dict, msg = Joint.make_joints_dict(root, msg)
+
+            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+                f.write("Successfully made joint dict\n")
+
             if msg != success_msg:
                 ui.messageBox(msg, title)
                 return 0
 
             # Generate inertial_dict
             inertial_dict, msg = Link.make_inertial_dict(root, msg)
+
+            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+                f.write("Successfully made inertial dict\n")
+
             if msg != success_msg:
                 ui.messageBox(msg, title)
                 return 0
@@ -151,6 +162,8 @@ def run(context):
             # --------------------
             # Generate URDF
             Write.write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
+            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
+                f.write("Successfully wrote urdf\n")
             Write.write_materials_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
             Write.write_transmissions_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
             Write.write_gazebo_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)

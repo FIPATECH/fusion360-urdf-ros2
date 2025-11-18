@@ -33,7 +33,7 @@ def copy_occs(root):
             occs.component.name = 'old_component'
             new_occs.component.name = 'base_link'
         else:
-            new_occs.component.name = re.sub('[ :()]', '_', occs.name)
+            new_occs.component.name = re.sub(' ','_',re.sub('[():]', '', occs.name.split(":")[0]))
         new_occs = allOccs.item((allOccs.count-1))
         for i in range(bodies.count):
             body = bodies.item(i)
@@ -83,7 +83,7 @@ def export_stl(design, save_dir, components):
                     stlExportOptions.sendToPrintUtility = False
                     stlExportOptions.isBinaryFormat = True
                     # options are .MeshRefinementLow .MeshRefinementMedium .MeshRefinementHigh
-                    stlExportOptions.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementLow
+                    stlExportOptions.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
                     exportMgr.execute(stlExportOptions)
                 except:
                     print('Component ' + occ.component.name + 'has something wrong.')
