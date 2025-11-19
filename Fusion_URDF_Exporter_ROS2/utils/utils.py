@@ -88,6 +88,42 @@ def export_stl(design, save_dir, components):
                 except:
                     print('Component ' + occ.component.name + 'has something wrong.')
 
+def export_step(design, save_dir, components):
+    """
+    export stl files into "sace_dir/"
+
+
+    Parameters
+    ----------
+    design: adsk.fusion.Design.cast(product)
+    save_dir: str
+        directory path to save
+    components: design.allComponents
+    """
+
+    # create a single exportManager instance
+    exportMgr = design.exportManager
+    # get the script location
+    try: os.mkdir(save_dir + '/meshes')
+    except: pass
+    scriptDir = save_dir + '/meshes'
+    # export the occurrence one by one in the component to a specified file
+    for component in components:
+        allOccus = component.allOccurrences
+        for occ in allOccus:
+            if 'old_component' not in occ.component.name:
+                try:
+                    print(occ.component.name)
+                    fileName = scriptDir + "/" + occ.component.name
+                    # create stl exportOptions
+                    stpExportOptions = exportMgr.createSTEPExportOptions(fileName,occ)
+                    # stlExportOptions.sendToPrintUtility = False
+                    # stlExportOptions.isBinaryFormat = True
+                    # options are .MeshRefinementLow .MeshRefinementMedium .MeshRefinementHigh
+                    # stlExportOptions.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
+                    exportMgr.execute(stpExportOptions)
+                except:
+                    print('Component ' + occ.component.name + 'has something wrong.')
 
 def file_dialog(ui):
     """

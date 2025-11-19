@@ -121,7 +121,7 @@ def run(context):
 
             # Generate STl files
             utils.copy_occs(root)
-            utils.export_stl(design, save_dir, components)
+            utils.export_step(design, save_dir, components)
 
             success_msg = 'Successfully created URDF file and launch file for Gazebo Harmonic'
             ui.messageBox(success_msg, title)

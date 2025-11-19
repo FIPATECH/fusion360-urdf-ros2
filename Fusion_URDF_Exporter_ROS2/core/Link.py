@@ -70,7 +70,7 @@ class Link:
         geometry_v = SubElement(visual, 'geometry')
         mesh_v = SubElement(geometry_v, 'mesh')
         mesh_v.attrib = {
-            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stl',
+            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stp',
             'scale': '0.001 0.001 0.001'}
         material = SubElement(visual, 'material')
         material.attrib = {'name': 'silver'}
@@ -82,7 +82,7 @@ class Link:
         geometry_c = SubElement(collision, 'geometry')
         mesh_c = SubElement(geometry_c, 'mesh')
         mesh_c.attrib = {
-            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stl',
+            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stp',
             'scale': '0.001 0.001 0.001'}
 
         # print("\n".join(utils.prettify(link).split("\n")[1:]))
