@@ -70,7 +70,7 @@ class Link:
         geometry_v = SubElement(visual, 'geometry')
         mesh_v = SubElement(geometry_v, 'mesh')
         mesh_v.attrib = {
-            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stl',
+            'filename': '${mesh_prefix}' + '/' + self.name + '.stl',
             'scale': '0.001 0.001 0.001'}
         material = SubElement(visual, 'material')
         material.attrib = {'name': 'silver'}
@@ -82,7 +82,7 @@ class Link:
         geometry_c = SubElement(collision, 'geometry')
         mesh_c = SubElement(geometry_c, 'mesh')
         mesh_c.attrib = {
-            'filename': 'file://' + '$(find %s)' % self.pkg_name + self.remain_repo_addr + self.name + '.stl',
+            'filename': '${mesh_prefix}' + '/' + self.name + '.stl',
             'scale': '0.001 0.001 0.001'}
 
         # print("\n".join(utils.prettify(link).split("\n")[1:]))
@@ -125,6 +125,9 @@ def make_inertial_dict(root, msg):
         (_, xx, yy, zz, xy, yz, xz) = prop.getXYZMomentsOfInertia()
         moment_inertia_world = [_ / 10000.0 for _ in [xx, yy, zz, xy, yz, xz]]  ## kg / cm^2 -> kg/m^2
         occs_dict['inertia'] = utils.origin2center_of_mass(moment_inertia_world, center_of_mass, mass)
+        with open('C:/Users/enezl/Desktop/test.txt', mode='a') as f:
+            f.write(f"{occs_dict['name']} : \n transporté : {occs_dict['inertia']} \n direct : {prop.getPrincipalMomentsOfInertia()[1]/10000} \n nouveau : {utils.get_urdf_inertia_via_principal(prop.getPrincipalMomentsOfInertia(),prop.getPrincipalAxes())}") 
+            f.write('\n')
 
         if occs.component.name == 'base_link':
             inertial_dict['base_link'] = occs_dict

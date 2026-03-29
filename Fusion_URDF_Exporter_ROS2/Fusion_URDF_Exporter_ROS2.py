@@ -2,7 +2,7 @@
 #Description-Generate URDF file from Fusion 360
 
 import adsk, adsk.core, adsk.fusion, traceback
-import os
+import os, re
 import sys
 from .utils import utils
 from .core import Link, Joint, Write
@@ -29,8 +29,6 @@ def run(context):
         app = adsk.core.Application.get()
         ui = app.userInterface
 
-        with open('C:/Users/enezl/Desktop/test.txt', 'w') as f :
-            f.write("start"+"\n")
 
         product = app.activeProduct
         design = adsk.fusion.Design.cast(product)
@@ -42,23 +40,43 @@ def run(context):
         root = design.rootComponent  # root component
         components = design.allComponents
 
-
-
-        # set the names
         robot_name = root.name.split()[0]
-        package_name = robot_name + '_description'
 
         # Show welcome message
         welcome_msg = ("Welcome to the Fusion 'Fusion 360 -> ROS 2 URDF Script' plugin.\n"
                        "\n"
                        "This tool generates a robot_description package with launch files for visualizing your robot in Rviz and spawning the model in Gazebo.\n"
                        "\n"
-                       "It has been tested with ROS 2 Jazzy and Gazebo Harmonic, as well as ROS 2 Humble with Gazebo Classic.\n\n"
+                       "It has been tested with ROS 2 Jazzy and Gazebo Harmonic, as well as ROS 2 Humble with Gazebo Classic.\n"
+                       "\n"
+                       "WARNING The current version only works with fusion in english.\n"
                        "\n"
                        "Press OK to continue or Cancel to quit.")
         if ui.messageBox(welcome_msg, title, adsk.core.MessageBoxButtonTypes.OKCancelButtonType) != adsk.core.DialogResults.DialogOK:
             return
+        name_choice_msg  = ("Do you want to change the name of the robot ?\n"
+                            "\n"
+                            f"Current name : {robot_name}"
+                            "\n")
+         
+        change_msg = ("Choose a new name :\n")
+        error_msg = ("")
+        if ui.messageBox(name_choice_msg ,title, adsk.core.MessageBoxButtonTypes.YesNoButtonType) != adsk.core.DialogResults.DialogOK :
+            valid = False
+            while not valid : 
+                temp_name, box_val = ui.inputBox(change_msg + error_msg,title)
+                if box_val != 0 :  
+                    ui.messageBox('Fusion 360 -> ROS 2 URDF was canceled', title)
+                    return
+                elif not re.search("{|'|[|(|)|:|.| |,|]|}",temp_name) or temp_name != "" :
+                    robot_name = temp_name
+                    valid = True
+                else:
+                    error_msg = ("Unsuported character or empty entry")
 
+        # set the names
+
+        package_name = robot_name + '_description'
         # # Show folder browse message
         # browse_msg = "Press Ok to browse the folder for saving the ROS package, cancel to quit."
         # if ui.messageBox(browse_msg, title, adsk.core.MessageBoxButtonTypes.OKCancelButtonType) != adsk.core.DialogResults.DialogOK:
@@ -136,8 +154,6 @@ def run(context):
             # Generate joints_dict. All joints are related to root.
             joints_dict, msg = Joint.make_joints_dict(root, msg)
 
-            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
-                f.write("Successfully made joint dict\n")
 
             if msg != success_msg:
                 ui.messageBox(msg, title)
@@ -146,8 +162,6 @@ def run(context):
             # Generate inertial_dict
             inertial_dict, msg = Link.make_inertial_dict(root, msg)
 
-            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
-                f.write("Successfully made inertial dict\n")
 
             if msg != success_msg:
                 ui.messageBox(msg, title)
@@ -162,8 +176,7 @@ def run(context):
             # --------------------
             # Generate URDF
             Write.write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
-            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
-                f.write("Successfully wrote urdf\n")
+
             Write.write_materials_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
             Write.write_transmissions_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
             Write.write_gazebo_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_name, save_dir)
