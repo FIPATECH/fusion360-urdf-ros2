@@ -61,7 +61,7 @@ def run(context):
          
         change_msg = ("Choose a new name :\n")
         error_msg = ("")
-        if ui.messageBox(name_choice_msg ,title, adsk.core.MessageBoxButtonTypes.YesNoButtonType) != adsk.core.DialogResults.DialogOK :
+        if ui.messageBox(name_choice_msg ,title, adsk.core.MessageBoxButtonTypes.YesNoButtonType) != adsk.core.DialogResults.DialogNo :
             valid = False
             while not valid : 
                 temp_name, box_val = ui.inputBox(change_msg + error_msg,title)
