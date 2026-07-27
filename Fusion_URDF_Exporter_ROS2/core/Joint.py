@@ -3,6 +3,7 @@
 Created on Sun May 12 20:17:17 2019
 
 @author: syuntoku
+edit: enezl
 """
 
 import adsk, re
@@ -127,8 +128,6 @@ def make_joints_dict(root, msg):
     for joint in root.joints:
         joint_dict = {}
         joint_type = joint_type_list[joint.jointMotion.jointType]
-        with open('C:/Users/enezl/Desktop/test.txt', 'a') as f :
-            f.write(str(joint_type)+"\n")
         joint_dict['type'] = joint_type
         
         # swhich by the type of the joint
@@ -153,8 +152,7 @@ def make_joints_dict(root, msg):
                 break
             else:  # if there is no angle limit
                 joint_dict['type'] = 'continuous'
-            with open('C:/Users/enezl/Desktop/test.txt', 'a') as f:
-                f.write(str(joint_dict['type']) + "\n")
+
         elif joint_type == 'prismatic':
             joint_dict['axis'] = [round(i, 6) for i in \
                 joint.jointMotion.slideDirectionVector.asArray()]  # Also normalized
