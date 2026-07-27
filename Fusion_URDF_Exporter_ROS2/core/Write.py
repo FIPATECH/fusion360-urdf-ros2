@@ -6,7 +6,6 @@ Created on Sun May 12 20:46:26 2019
 """
 
 import adsk, os
-from xml.etree.ElementTree import Element, SubElement
 from . import Link, Joint, launch_templates
 from ..utils import utils
 
@@ -138,7 +137,7 @@ def write_urdf(joints_dict, links_xyz_dict, inertial_dict, package_name, robot_n
         f.write('\n')
         f.write('<xacro:property name="mesh_prefix" value="file://$(find {})/meshes"/>'.format(package_name))
         f.write('\n')
-   
+
     write_link_urdf(joints_dict, repo, links_xyz_dict, file_name, inertial_dict)
 
     write_joint_urdf(joints_dict, repo, links_xyz_dict, file_name)
@@ -149,7 +148,7 @@ def write_urdf_sim(joints_dict, links_xyz_dict, inertial_dict, package_name, rob
     try: os.mkdir(save_dir + '/urdf')
     except: pass
 
-    file_name = save_dir + '/urdf/' + robot_name + '.urdf.xacro'  # the name of urdf file
+    file_name = save_dir + '/urdf/' + robot_name + '.xacro'  # the name of urdf file
     repo = package_name + '/meshes/'  # the repository of binary stl files
     with open(file_name, mode='w') as f:
         f.write('<?xml version="1.0" encoding="utf-8"?>\n')
@@ -303,12 +302,6 @@ def write_gazebo_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name,
         f.write('\n')
         f.write('<xacro:property name="body_color" value="Gazebo/Silver" />\n')
         f.write('\n')
-
-        gazebo = Element('gazebo')
-        plugin = SubElement(gazebo, 'plugin')
-        plugin.attrib = {'name':'control', 'filename':'libgazebo_ros_control.so'}
-        gazebo_xml = "\n".join(utils.prettify(gazebo).split("\n")[1:])
-        f.write(gazebo_xml)
 
         # for base_link
         f.write('<gazebo reference="base_link">\n')
