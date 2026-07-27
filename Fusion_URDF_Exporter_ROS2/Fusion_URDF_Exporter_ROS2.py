@@ -5,7 +5,7 @@ import adsk, adsk.core, adsk.fusion, traceback
 import os, re
 import sys
 from .utils import utils
-from .core import Link, Joint, Write
+from .core import Link, Joint, Write, urdf_tree
 
 """
 # length unit is 'cm' and inertial unit is 'kg/cm^2'
@@ -109,6 +109,7 @@ def run(context):
             if msg != success_msg:
                 ui.messageBox(msg, title)
                 return 0
+            joints_dict, tree_warnings = urdf_tree.make_urdf_tree(joints_dict)
 
             # Generate inertial_dict
             inertial_dict, msg = Link.make_inertial_dict(root, msg)
@@ -142,6 +143,8 @@ def run(context):
             utils.export_stl(design, save_dir, components)
 
             success_msg = 'Successfully created URDF file and launch file for Gazebo Harmonic'
+            if tree_warnings:
+                success_msg += '\n\nURDF tree warnings:\n' + '\n'.join(tree_warnings)
             ui.messageBox(success_msg, title)
 
         else:
@@ -158,6 +161,7 @@ def run(context):
             if msg != success_msg:
                 ui.messageBox(msg, title)
                 return 0
+            joints_dict, tree_warnings = urdf_tree.make_urdf_tree(joints_dict)
 
             # Generate inertial_dict
             inertial_dict, msg = Link.make_inertial_dict(root, msg)
@@ -193,6 +197,8 @@ def run(context):
             utils.copy_occs(root)  
             utils.export_stl(design, save_dir, components)
             success_msg = 'Successfully created URDF file and launch file for Gazebo Classic'
+            if tree_warnings:
+                success_msg += '\n\nURDF tree warnings:\n' + '\n'.join(tree_warnings)
             ui.messageBox(success_msg, title)
 
 
@@ -200,4 +206,3 @@ def run(context):
     except Exception as e:
         if ui:
             ui.messageBox(f'Failed:\n{str(e)}', title)
-
