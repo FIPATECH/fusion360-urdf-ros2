@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a6d6d1db-1541-442e-ad04-79349808c942" name="Changes" comment="test run for exporting meshes in step format rather than in stl">
+      <change beforePath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/Fusion_URDF_Exporter_ROS2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/Fusion_URDF_Exporter_ROS2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/core/launch_templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fusion_URDF_Exporter_ROS2/core/launch_templates.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="step_meshes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;29etienne&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FIPATECH/fusion360-urdf-ros2.git&quot;,
+    &quot;accountId&quot;: &quot;aa1d603b-e41a-49f2-9a28-db5699eee957&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="354sWhxL1IhCKfBPAfhP0ARVb3Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Fusion_URDF_Exporter_ROS2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "update-for-complete-urdf",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "two.files.diff.last.used.file": "C:/Users/enezl/AppData/Roaming/Autodesk/Autodesk Fusion 360/API/Scripts/URDF_Exporter_Ros2/core/Joint.py",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.27397.106" />
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a6d6d1db-1541-442e-ad04-79349808c942" name="Changes" comment="" />
+      <created>1762380711802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762380711802</updated>
+      <workItem from="1762380713066" duration="442000" />
+      <workItem from="1762381183308" duration="522000" />
+      <workItem from="1762381720381" duration="4806000" />
+      <workItem from="1763405959507" duration="23347000" />
+      <workItem from="1763499827339" duration="9389000" />
+      <workItem from="1764497161169" duration="4688000" />
+      <workItem from="1767234414827" duration="1787000" />
+      <workItem from="1769517294043" duration="16000" />
+      <workItem from="1772363984628" duration="5397000" />
+    </task>
+    <task id="LOCAL-00001" summary="adding utf-8 tag at the begining of XML files and changing occs_dict, inertial_dict keys">
+      <option name="closed" value="true" />
+      <created>1762382048154</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762382048154</updated>
+    </task>
+    <task id="LOCAL-00002" summary="adding utf-8 tag at the begining of XML files and changing occs_dict, inertial_dict keys">
+      <option name="closed" value="true" />
+      <created>1762385749025</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762385749025</updated>
+    </task>
+    <task id="LOCAL-00003" summary="proper component naming, script exports something">
+      <option name="closed" value="true" />
+      <created>1763498713739</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763498713739</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test run for exporting meshes in step format rather than in stl">
+      <option name="closed" value="true" />
+      <created>1763577085400</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763577085400</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adding utf-8 tag at the begining of XML files and changing occs_dict, inertial_dict keys" />
+    <MESSAGE value="proper component naming, script exports something" />
+    <MESSAGE value="test run for exporting meshes in step format rather than in stl" />
+    <option name="LAST_COMMIT_MESSAGE" value="test run for exporting meshes in step format rather than in stl" />
+  </component>
+</project>

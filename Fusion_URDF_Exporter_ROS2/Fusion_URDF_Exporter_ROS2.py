@@ -109,7 +109,11 @@ def run(context):
             os.mkdir(save_dir)
         except:
             pass
-
+        # Ask to drop boken links
+        broken_msg = "Do you wish to remove joints that will break the URDF file? \n No will return the list of joint that might cause a problem when loading URDF"
+        if ui.messageBox(broken_msg, title, adsk.core.MessageBoxButtonTypes.YesNoButtonType) == adsk.core.DialogResults.DialogYes:
+            broken = True
+        else : broken = False
         # Ask for Gazebo version
         gazebo_msg = "Are you using Gazebo Harmonic? Press Yes for Gazebo Harmonic, No for Gazebo Classic (Legacy)."
         if ui.messageBox(gazebo_msg, title, adsk.core.MessageBoxButtonTypes.YesNoButtonType) == adsk.core.DialogResults.DialogYes:

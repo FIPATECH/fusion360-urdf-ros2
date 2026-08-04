@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 
-def make_urdf_tree(joints_dict, root_link='base_link'):
+def make_urdf_tree(joints_dict, root_link='base_link', drop_broken = True):
     """
     Return a URDF-compatible spanning tree and warnings for dropped joints.
 
@@ -26,7 +26,8 @@ def make_urdf_tree(joints_dict, root_link='base_link'):
                 dropped.append(
                     (joint_name, parent, child, 'child is the root link')
                 )
-                del pending[joint_name]
+                if drop_broken :
+                    del pending[joint_name]
                 progressed = True
                 continue
 
@@ -34,14 +35,16 @@ def make_urdf_tree(joints_dict, root_link='base_link'):
                 dropped.append(
                     (joint_name, parent, child, 'child already has a parent')
                 )
-                del pending[joint_name]
+                if drop_broken :
+                    del pending[joint_name]
                 progressed = True
                 continue
 
             if parent in known_links:
                 kept[joint_name] = joint_data
                 known_links.add(child)
-                del pending[joint_name]
+                if drop_broken :
+                    del pending[joint_name]
                 progressed = True
 
         if not progressed:
@@ -54,8 +57,11 @@ def make_urdf_tree(joints_dict, root_link='base_link'):
                 ))
             break
 
+    if drop_broken : txt = "dropped"
+    else : txt = "faulty"
+
     warnings = [
-        '{} ({} -> {}) dropped: {}'.format(joint, parent, child, reason)
+        f'{joint} ({parent} -> {child}) {txt}: {reason}'
         for joint, parent, child, reason in dropped
     ]
     return kept, warnings
